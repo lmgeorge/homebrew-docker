@@ -1,0 +1,82 @@
+
+
+
+`docker-desktop` refers to the Homebrew cask `docker` which installs the `Docker Desktop` app (`Docker.app`)
+    - 
+`docker` referes to formula that install barebones Docker CLI
+
+# Docker Core
+com.docker.cli
+	-> /Applications/Docker.app/Contents/Resources/bin/com.docker.cli*
+    b> docker-desktop
+
+docker
+	-> /Applications/Docker.app/Contents/Resources/bin/docker*
+    b> docker-desktop | docker
+
+docker-compose
+	-> /Applications/Docker.app/Contents/Resources/bin/docker-compose*
+    b> docker-desktop | docker-compose
+
+docker-compose-v1
+	-> /Applications/Docker.app/Contents/Resources/bin/docker-compose-v1/docker-compose*
+    b> docker-desktop
+
+docker-credential-desktop
+	-> /Applications/Docker.app/Contents/Resources/bin/docker-credential-desktop*
+    b> docker-desktop
+
+docker-credential-ecr-login
+	-> /Applications/Docker.app/Contents/Resources/bin/docker-credential-ecr-login*
+    b> docker-desktop | docker-credential-helper-ecr
+
+docker-credential-osxkeychain
+	-> /Applications/Docker.app/Contents/Resources/bin/docker-credential-osxkeychain*
+    b> docker-desktop | docker-credential-helper
+
+docker-index
+	-> /Applications/Docker.app/Contents/Resources/bin/docker-index*
+    b> docker-desktop
+
+hub-tool
+	-> /Applications/Docker.app/Contents/Resources/bin/hub-tool*
+    b> docker-desktop
+
+kubectl
+	-> /Applications/Docker.app/Contents/Resources/bin/kubectl*
+    b> docker-desktop | kubernetes-cli
+
+kubectl.docker
+	-> /Applications/Docker.app/Contents/Resources/bin/kubectl*
+    b> docker-desktop | kubernetes-cli (symlink)
+
+vpnkit
+	-> /Applications/Docker.app/Contents/Resources/bin/com.docker.vpnkit*
+    b> docker-desktop
+
+# Plugins
+All plugins are symlinked in `~/.docker/cli-plugins`
+
+docker-buildx
+	-> /Applications/Docker.app/Contents/Resources/cli-plugins/docker-buildx*
+    b> docker-desktop | docker-buildx
+
+docker-compose
+	-> /Applications/Docker.app/Contents/Resources/cli-plugins/docker-compose*
+    b> docker-desktop | docker-compose
+
+docker-dev
+	-> /Applications/Docker.app/Contents/Resources/cli-plugins/docker-dev*
+    b> docker-desktop
+
+docker-extension
+	-> /Applications/Docker.app/Contents/Resources/cli-plugins/docker-extension*
+    b> docker-desktop
+
+docker-sbom
+	-> /Applications/Docker.app/Contents/Resources/cli-plugins/docker-sbom*
+    b> docker-desktop
+
+docker-scan
+	-> /Applications/Docker.app/Contents/Resources/cli-plugins/docker-scan*
+    b> docker-desktop
