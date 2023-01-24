@@ -30,11 +30,11 @@ cask "docker-desktop" do
     depends_on macos: ">= :catalina"
 
     app "Docker.app"
-    installer script: {
-                executable: "#{appdir}/Docker.app/Contents/MacOS/install",
-                args: ["--accept-license"],
-                sudo: true
-            }
+    # installer script: {
+    #             executable: "#{appdir}/Docker.app/Contents/MacOS/install",
+    #             args: ["--accept-license"],
+    #             sudo: true
+    #         }
     artifact    "#{appdir}/Docker.app/Contents/Resources/etc/docker.bash-completion",
                 target: "#{HOMEBREW_PREFIX}/etc/bash_completion.d/docker"
     artifact    "#{appdir}/Docker.app/Contents/Resources/etc/docker-compose.bash-completion",
@@ -47,7 +47,9 @@ cask "docker-desktop" do
                 target: "#{HOMEBREW_PREFIX}/share/fish/vendor_completions.d/docker.fish"
     artifact    "#{appdir}/Docker.app/Contents/Resources/etc/docker-compose.fish-completion",
                 target: "#{HOMEBREW_PREFIX}/share/fish/vendor_completions.d/docker-compose.fish"
-
+    postflight do
+        system "sudo","#{appdir}/Docker.app/Contents/MacOS/install","--accept-license"
+    end
     uninstall delete: [
                 "/Library/PrivilegedHelperTools/com.docker.vmnetd",
                 "/usr/local/bin/com.docker.cli",
