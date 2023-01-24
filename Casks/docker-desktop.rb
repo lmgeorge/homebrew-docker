@@ -30,7 +30,7 @@ cask "docker-desktop" do
     ]
     depends_on macos: ">= :catalina"
 
-    app "Docker.app"
+    app "Docker.app", target: "#{appdir}/Docker.app"
     artifact  "#{appdir}/Docker.app/Contents/Resources/etc/docker.bash-completion",
               target: "#{HOMEBREW_PREFIX}/etc/bash_completion.d/docker"
     artifact  "#{appdir}/Docker.app/Contents/Resources/etc/docker-compose.bash-completion",
