@@ -32,7 +32,7 @@ cask "docker-desktop" do
     app "Docker.app"
     installer script: {
                 executable: "#{appdir}/Docker.app/Contents/MacOS/install",
-                args: ["--accept-license", "--user=#{USER}"],
+                args: ["--accept-license"],
                 sudo: true
             }
     artifact    "#{appdir}/Docker.app/Contents/Resources/etc/docker.bash-completion",
