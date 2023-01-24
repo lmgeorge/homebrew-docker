@@ -31,21 +31,25 @@ cask "docker-desktop" do
     depends_on macos: ">= :catalina"
 
     app "Docker.app", target: "#{appdir}/Docker.app"
-    artifact  "Docker.app/Contents/Resources/etc/docker.bash-completion",
-              target: "#{HOMEBREW_PREFIX}/etc/bash_completion.d/docker"
-    artifact  "Docker.app/Contents/Resources/etc/docker-compose.bash-completion",
-              target: "#{HOMEBREW_PREFIX}/etc/bash_completion.d/docker-compose"
-    artifact  "Docker.app/Contents/Resources/etc/docker.zsh-completion",
-              target: "#{HOMEBREW_PREFIX}/share/zsh/site-functions/_docker"
-    artifact  "Docker.app/Contents/Resources/etc/docker-compose.zsh-completion",
-              target: "#{HOMEBREW_PREFIX}/share/zsh/site-functions/_docker_compose"
-    artifact  "Docker.app/Contents/Resources/etc/docker.fish-completion",
-              target: "#{HOMEBREW_PREFIX}/share/fish/vendor_completions.d/docker.fish"
-    artifact  "Docker.app/Contents/Resources/etc/docker-compose.fish-completion",
+    binary  "Docker.app/Contents/Resources/bin/docker"
+    binary  "Docker.app/Contents/Resources/bin/docker-compose"
+    binary  "Docker.app/Contents/Resources/bin/docker-compose-v1/docker-compose",
+            target: "#{HOMEBREW_PREFIX}/bin/docker-compose-v1"
+    binary  "Docker.app/Contents/Resources/etc/docker.bash-completion",
+            target: "#{HOMEBREW_PREFIX}/etc/bash_completion.d/docker"
+    binary  "Docker.app/Contents/Resources/etc/docker-compose.bash-completion",
+            target: "#{HOMEBREW_PREFIX}/etc/bash_completion.d/docker-compose"
+    binary  "Docker.app/Contents/Resources/etc/docker.zsh-completion",
+            target: "#{HOMEBREW_PREFIX}/share/zsh/site-functions/_docker"
+    binary  "Docker.app/Contents/Resources/etc/docker-compose.zsh-completion",
+            target: "#{HOMEBREW_PREFIX}/share/zsh/site-functions/_docker_compose"
+    binary  "Docker.app/Contents/Resources/etc/docker.fish-completion",
+            target: "#{HOMEBREW_PREFIX}/share/fish/vendor_completions.d/docker.fish"
+    binary  "Docker.app/Contents/Resources/etc/docker-compose.fish-completion",
               target: "#{HOMEBREW_PREFIX}/share/fish/vendor_completions.d/docker-compose.fish"
     postflight do
       system_command  "#{appdir}/Docker.app/Contents/MacOS/install",
-                      args: ["--accept-license"],
+                      args: ["--accept-license", "--user=#{ENV['USER']}"],
                       sudo: true,
                       verbose: true
     end
