@@ -31,17 +31,17 @@ cask "docker-desktop" do
     depends_on macos: ">= :catalina"
 
     app "Docker.app", target: "#{appdir}/Docker.app"
-    artifact  "#{appdir}/Docker.app/Contents/Resources/etc/docker.bash-completion",
+    artifact  "Docker.app/Contents/Resources/etc/docker.bash-completion",
               target: "#{HOMEBREW_PREFIX}/etc/bash_completion.d/docker"
-    artifact  "#{appdir}/Docker.app/Contents/Resources/etc/docker-compose.bash-completion",
+    artifact  "Docker.app/Contents/Resources/etc/docker-compose.bash-completion",
               target: "#{HOMEBREW_PREFIX}/etc/bash_completion.d/docker-compose"
-    artifact  "#{appdir}/Docker.app/Contents/Resources/etc/docker.zsh-completion",
+    artifact  "Docker.app/Contents/Resources/etc/docker.zsh-completion",
               target: "#{HOMEBREW_PREFIX}/share/zsh/site-functions/_docker"
-    artifact  "#{appdir}/Docker.app/Contents/Resources/etc/docker-compose.zsh-completion",
+    artifact  "Docker.app/Contents/Resources/etc/docker-compose.zsh-completion",
               target: "#{HOMEBREW_PREFIX}/share/zsh/site-functions/_docker_compose"
-    artifact  "#{appdir}/Docker.app/Contents/Resources/etc/docker.fish-completion",
+    artifact  "Docker.app/Contents/Resources/etc/docker.fish-completion",
               target: "#{HOMEBREW_PREFIX}/share/fish/vendor_completions.d/docker.fish"
-    artifact  "#{appdir}/Docker.app/Contents/Resources/etc/docker-compose.fish-completion",
+    artifact  "Docker.app/Contents/Resources/etc/docker-compose.fish-completion",
               target: "#{HOMEBREW_PREFIX}/share/fish/vendor_completions.d/docker-compose.fish"
     postflight do
       system_command  "#{appdir}/Docker.app/Contents/MacOS/install",
