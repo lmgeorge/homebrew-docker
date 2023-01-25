@@ -35,6 +35,33 @@ cask "docker-desktop" do
     binary  "Docker.app/Contents/Resources/bin/docker-compose"
     binary  "Docker.app/Contents/Resources/bin/docker-compose-v1/docker-compose",
             target: "#{HOMEBREW_PREFIX}/bin/docker-compose-v1"
+    # binary  "Docker.app/Contents/Resources/bin/com.docker.cli"
+    # binary  "Docker.app/Contents/Resources/bin/docker-buildx"
+    # binary  "Docker.app/Contents/Resources/bin/docker-credential-desktop"
+    # binary  "Docker.app/Contents/Resources/bin/docker-credential-ecr-login"
+    # binary  "Docker.app/Contents/Resources/bin/docker-credential-osxkeychain"
+    # binary  "Docker.app/Contents/Resources/bin/hub-tool"
+    # binary  "Docker.app/Contents/Resources/bin/hyperkit"
+    # binary  "Docker.app/Contents/Resources/bin/kubectl"
+    # binary  "Docker.app/Contents/Resources/bin/kubectl",
+    #         target: "#{HOMEBREW_PREFIX}/bin/kubectl.docker"
+    # binary  "Docker.app/Contents/Resources/bin/vpnkit"
+
+    # CLI Plugins
+    binary  "Docker.app/Contents/Resources/cli-plugins/docker-buildx",
+            target:  "~/.docker/cli-plugins/docker-buildx"
+    binary  "Docker.app/Contents/Resources/cli-plugins/docker-compose",
+            target:  "~/.docker/cli-plugins/docker-compose"
+    binary  "Docker.app/Contents/Resources/cli-plugins/docker-dev",
+            target:  "~/.docker/cli-plugins/docker-dev"
+    binary  "Docker.app/Contents/Resources/cli-plugins/docker-extension",
+            target:  "~/.docker/cli-plugins/docker-extension"
+    binary  "Docker.app/Contents/Resources/cli-plugins/docker-sbom",
+            target:  "~/.docker/cli-plugins/docker-sbom"
+    binary  "Docker.app/Contents/Resources/cli-plugins/docker-scan",
+            target:  "~/.docker/cli-plugins/docker-scan"
+
+    # Completions
     binary  "Docker.app/Contents/Resources/etc/docker.bash-completion",
             target: "#{HOMEBREW_PREFIX}/etc/bash_completion.d/docker"
     binary  "Docker.app/Contents/Resources/etc/docker-compose.bash-completion",
@@ -46,13 +73,15 @@ cask "docker-desktop" do
     binary  "Docker.app/Contents/Resources/etc/docker.fish-completion",
             target: "#{HOMEBREW_PREFIX}/share/fish/vendor_completions.d/docker.fish"
     binary  "Docker.app/Contents/Resources/etc/docker-compose.fish-completion",
-              target: "#{HOMEBREW_PREFIX}/share/fish/vendor_completions.d/docker-compose.fish"
+            target: "#{HOMEBREW_PREFIX}/share/fish/vendor_completions.d/docker-compose.fish"
+
     postflight do
       system_command  "#{appdir}/Docker.app/Contents/MacOS/install",
                       args: ["--accept-license", "--user=#{ENV['USER']}"],
                       sudo: true,
                       verbose: true
     end
+
     uninstall delete: [
               "/Library/PrivilegedHelperTools/com.docker.vmnetd",
               "/usr/local/bin/com.docker.cli",
@@ -62,11 +91,11 @@ cask "docker-desktop" do
               "/usr/local/bin/docker-credential-ecr-login",
               "/usr/local/bin/docker-credential-osxkeychain",
               "/usr/local/bin/docker",
+              "/usr/local/bin/docker-index",
               "/usr/local/bin/hub-tool",
               "/usr/local/bin/hyperkit",
-              "/usr/local/bin/kubectl.docker",
               "/usr/local/bin/kubectl",
-              "/usr/local/bin/notary",
+              "/usr/local/bin/kubectl.docker",
               "/usr/local/bin/vpnkit",
               "#{HOMEBREW_PREFIX}/share/zsh/site-functions/_docker",
               "#{HOMEBREW_PREFIX}/share/zsh/site-functions/_docker_compose",
@@ -109,4 +138,6 @@ cask "docker-desktop" do
     caveats do
       files_in_usr_local true
     end
+    caveats "You must run the Docker.app at least once to finish installation."
+    caveats "Restart your terminal for completions to take effect."
 end
